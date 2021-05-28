@@ -7,15 +7,15 @@
 [![LinkedIn][linkedin-shield]][linkedin-url]
  -->
 
-<!-- 
+
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
   <a href="https://github.com/othneildrew/Best-README-Template">
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
- -->
-  <h3 align="center">Cisco CUBE </h3>
+
+  <h3 align="center">Best-README-Template</h3>
 
  
 
@@ -36,7 +36,7 @@ Reduce cost of calling charges by routing to use the dial peer that has the fair
 
 ### Built With
 
-* Python
+* Python 3.9
 
 ### Libraries
 * Paramiko
@@ -51,11 +51,12 @@ To get a local copy up and running follow these simple steps.
 
 ### Prerequisites
 
-Install the following libraries
-* npm
+Install the following libraries 
+ pip 
   ```sh
-  npm install npm@latest -g
+ pip install pip --upgrade --user
   ```
+
 
 ### Installation
 
@@ -63,30 +64,59 @@ Install the following libraries
    ```sh
    git clone https://github.com/finsysadmin/Cisco-CUBE.git
    ```
-3. Edit Database credentials accordingly to connect to your DB.
+3. Edit Database credentials accordingly to connect to your DB on `func` `dbconnect`
 
-   ```sh
-   def dbconnect(self, server=None):
-        server = "Ip Adress"
-        database = "Database Name"
-        tcon = "yes"
-        uname = "user"
-        pword = "Password if"
-        conn = pyodbc.connect(driver='{SQL Server Native Client 11.0}', host=server, database=database,
-                              user=uname, password=pword)
-   ```
-4. Enter your API in `config.js`
-   ```JS
-   const API_KEY = 'ENTER YOUR API';
-   ```
+4. Install paramiko 
+```sh
+pip install paramiko
+```
+5. install pydoc
+```sh
+pip install pydoc
+```
+6.install http client library
+```py
+pip install http.client
+```
 
-
+7.  Run the program `main`
 
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+Automating dial peer  preferences assignment. Lower rates of calling incured as the dial peer will be configured to use the prefernces with the least cost. 
 
+## Code Samples
+### DB connect function
+
+```
+def dbconnect(self, server=None):
+        server = "10.244.0.5"
+        database = "DevNet"
+        tcon = "yes"
+        uname = "sa"
+        pword = "K0Junga#"
+        conn = pyodbc.connect(driver='{SQL Server Native Client 11.0}', host=server, database=database,
+                              user=uname, password=pword)
+        self.connection = conn
+```
+### Write config to cisco device
+```
+ def write_config(self):
+        preference = 0
+        for dial_peer in self.preferences:
+            # Create dial peer
+            peer = str(1) + str(dial_peer.AREA) + str(dial_peer.SPCODE) + str(dial_peer.GW)
+            # write dial peer and preference
+            self.connection.send("dial-peer voice " + peer + " voip\n")  # dial-peer voice 1 254 3 voip
+            self.connection.send("preference " + str(preference) + "\n")  # preference 0
+            preference = preference + 1
+            time.sleep(1)
+
+        router_output = self.connection.recv(65535)
+        # Test for reading command output
+        print(str(router_output) + "\n")
+ ```
 _For more examples, please refer to the [Documentation](https://example.com)_
 
 
@@ -121,9 +151,8 @@ Distributed under the MIT License. See `LICENSE` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
 
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
+Project Link: [https://github.com/finsysadmin/Cisco-CUBE](https://github.com/finsysadmin/Cisco-CUBE)
 
 
 
@@ -133,13 +162,7 @@ Project Link: [https://github.com/your_username/repo_name](https://github.com/yo
 * [Img Shields](https://shields.io)
 * [Choose an Open Source License](https://choosealicense.com)
 * [GitHub Pages](https://pages.github.com)
-* [Animate.css](https://daneden.github.io/animate.css)
-* [Loaders.css](https://connoratherton.com/loaders)
-* [Slick Carousel](https://kenwheeler.github.io/slick)
-* [Smooth Scroll](https://github.com/cferdinandi/smooth-scroll)
-* [Sticky Kit](http://leafo.net/sticky-kit)
-* [JVectorMap](http://jvectormap.com)
-* [Font Awesome](https://fontawesome.com)
+
 
 
 
@@ -148,9 +171,9 @@ Project Link: [https://github.com/your_username/repo_name](https://github.com/yo
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
-[contributors-url]: https://github.com/othneildrew/Best-README-Template/graphs/contributors
+[contributors-url]: https://github.com/finsysadmin/Cisco-CUBE/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
-[forks-url]: https://github.com/othneildrew/Best-README-Template/network/members
+[forks-url]: https://github.com/finsysadmin/Cisco-CUBE/network/members
 [stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
 [stars-url]: https://github.com/othneildrew/Best-README-Template/stargazers
 [issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
