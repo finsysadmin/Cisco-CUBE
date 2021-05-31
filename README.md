@@ -91,11 +91,11 @@ Automating dial peer  preferences assignment. Lower rates of calling incured as 
 
 ```
 def dbconnect(self, server=None):
-        server = "10.244.0.5"
-        database = "DevNet"
+        server = "Ip address"
+        database = "DB name"
         tcon = "yes"
-        uname = "sa"
-        pword = "K0Junga#"
+        uname = "username"
+        pword = "pass"
         conn = pyodbc.connect(driver='{SQL Server Native Client 11.0}', host=server, database=database,
                               user=uname, password=pword)
         self.connection = conn
