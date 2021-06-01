@@ -15,7 +15,10 @@
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
+
   <h3 align="center">Cisco CUBE Project</h3>
+
+
 
  
 
@@ -92,10 +95,11 @@ Automating dial peer  preferences assignment. Lower rates of calling incured as 
 ```
 def dbconnect(self, server=None):
         server = "Ip address"
-        database = "DB name"
+        database = "DBname"
         tcon = "yes"
         uname = "username"
         pword = "pass"
+
         conn = pyodbc.connect(driver='{SQL Server Native Client 11.0}', host=server, database=database,
                               user=uname, password=pword)
         self.connection = conn
