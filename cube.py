@@ -20,6 +20,7 @@ import paramiko
 import hashlib
 
 
+
 class DevNet:
     connection = object  # database connection
     ssh_connection = object  # ssh connection
