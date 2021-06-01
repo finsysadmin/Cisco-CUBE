@@ -34,8 +34,6 @@
 
 A Python script to automate assignment of preference to voice dial peers based on the calling rate of a specific destination for each SIP Trunk provider in an enterprise and therefore achieving least cost routing.
 
-## Use
-Reduce cost of calling charges by routing to use the dial peer that has the fairest charges.
 
 ### Built With
 
@@ -123,7 +121,10 @@ def dbconnect(self, server=None):
  ```
 _For more examples, please refer to the [Documentation](https://example.com)_
 
-
+## Credits
+1. [Cyrus Muchiri](https://github.com/CyrusFinsysGroup) 
+2. Kevlvin Mwaura()
+3. [Stanley Mandela](https://github.com/StanMandela)
 
 <!-- ROADMAP -->
 ## Roadmap
@@ -174,7 +175,6 @@ Project Link: [https://github.com/finsysadmin/Cisco-CUBE](https://github.com/fin
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
 [contributors-url]: https://github.com/finsysadmin/Cisco-CUBE/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
 [forks-url]: https://github.com/finsysadmin/Cisco-CUBE/network/members
