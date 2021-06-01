@@ -15,7 +15,10 @@
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center">Best-README-Template</h3>
+
+  <h3 align="center">Cisco CUBE Project</h3>
+
+
 
  
 
@@ -25,7 +28,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Product Name Screen Shot][product-screenshot]](https://example.com)
+[![Product Name Screen Shot][product-screenshot]](https://github.com/finsysadmin/Cisco-CUBE/blob/stanWork/.images/intellij.png)
 
 ## Description
 
@@ -91,11 +94,12 @@ Automating dial peer  preferences assignment. Lower rates of calling incured as 
 
 ```
 def dbconnect(self, server=None):
-        server = "10.244.0.5"
-        database = "DevNet"
+        server = "Ip address"
+        database = "DBname"
         tcon = "yes"
-        uname = "sa"
-        pword = "K0Junga#"
+        uname = "username"
+        pword = "pass"
+
         conn = pyodbc.connect(driver='{SQL Server Native Client 11.0}', host=server, database=database,
                               user=uname, password=pword)
         self.connection = conn
@@ -182,4 +186,4 @@ Project Link: [https://github.com/finsysadmin/Cisco-CUBE](https://github.com/fin
 [license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/othneildrew
-[product-screenshot]: images/screenshot.png
+[product-screenshot]: images/intellij.png
