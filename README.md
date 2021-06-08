@@ -187,3 +187,5 @@ Project Link: [https://github.com/finsysadmin/Cisco-CUBE](https://github.com/fin
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/othneildrew
 [product-screenshot]: images/intellij.png
+
+[![published](https://static.production.devnetcloud.com/codeexchange/assets/images/devnet-published.svg)](https://developer.cisco.com/codeexchange/github/repo/finsysadmin/Cisco-CUBE)
