@@ -107,20 +107,20 @@ Application will read the database, check that the dial peer preferences and set
 
 #### For example for international calls to Kenya with country code +254:
  
-`dial-peer voice 12541 voip  
- preference 1  
+ dial-peer voice 12541 voip 
+ preference 1   
  destination-pattern 00254T  
  session protocol sipv2   
- session target ipv4:1.1.1.1  
- `
- `
+ session target ipv4:1.1.1.1   
+ 
+ 
 ! 
-dial-peer voice 12542 voip 
- preference 2
- destination-pattern [08]00T 
- session protocol sipv2 
- session target ipv4:2.2.2.2 
- `
+ dial-peer voice 12542 voip  
+ preference 2  
+ destination-pattern [08]00T   
+ session protocol sipv2  
+ session target ipv4:2.2.2.2  
+ 
  
 ##### _Outgoing calls will be sent through the provider specified in the dial peer with the lowest preference for that destination
 
