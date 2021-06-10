@@ -39,13 +39,14 @@ A Python script to automate assignment of preference to voice dial peers based o
 
 * Python 3.9
 
+
 #### Software versions Used
 
 * Cisco CSR 1000V - csr1000v-universalk9.16.12
 * Cisco Unified Border Element Version 14
 * Microsoft SQL Server Express 2019
 
-### Libraries
+### Python Libraries
 * Paramiko
 * http.client
 
@@ -53,12 +54,17 @@ A Python script to automate assignment of preference to voice dial peers based o
 
 The following Tables exists.
 
-| Tables                             | Description |
+| Tables                             | Contains |
 |------------------------------------|-------------|
 | `areacode`                         | Service Provider code (SPCode), Destination area code (AREA), Charges per minute for the respective destination code (UNIT_CHG). |
 | `gateway`                          | Service provider code (SCODE). An organization can have more than one service provider and each service provider can have more     
                                      than one gateway. |
 |`pref_sip_operators`                |Preference (PREF), Area Code (AREA), Service provider code (SPCODE) and Gateway(GW).
+
+**Stored procedure**
+
+***util_get_sip_rank***
+This is routine is called by the script and pass the phone number calling to return the dial peer preferences  
 
 
 <!-- GETTING STARTED -->
@@ -74,8 +80,7 @@ Install the following libraries
   ```sh
  pip install pip --upgrade --user
   ```
-#### Database setup
- Database Option:-
+
 
 ### Installation
 
@@ -122,7 +127,7 @@ Application will read the database, check that the dial peer preferences and set
  session target ipv4:2.2.2.2  
  
  
-##### _Outgoing calls will be sent through the provider specified in the dial peer with the lowest preference for that destination
+##### _Outgoing calls will be sent through the provider specified in the dial peer with the lowest preference for that destination_
 
 ## Code Samples
 
@@ -157,7 +162,7 @@ def dbconnect(self, server=None):
         # Test for reading command output
         print(str(router_output) + "\n")
  ```
-_For more examples, please refer to the [Documentation](https://example.com)
+
 
 ## Credits
 1. [Cyrus Muchiri](https://github.com/CyrusFinsysGroup) 
