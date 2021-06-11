@@ -87,7 +87,7 @@ Install the following libraries
    ```sh
    git clone https://github.com/finsysadmin/Cisco-CUBE.git
    ```
-3. Edit Database credentials accordingly to connect to your DB on `func` `dbconnect`
+3. Edit Database credentials accordingly to connect to your DB on `function dbconnect`
 
 4. Install paramiko 
 ```sh
