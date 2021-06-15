@@ -87,21 +87,14 @@ Install the following libraries
    ```sh
    git clone https://github.com/finsysadmin/Cisco-CUBE.git
    ```
-3. Edit Database credentials accordingly to connect to your DB on `function dbconnect`
+2. Edit Database credentials accordingly to connect to your DB on `function dbconnect`
 
-4. Install paramiko 
-```sh
-pip install paramiko
-```
-5. install pydoc
-```sh
-pip install pyodbc
-```
-6.install http client library
-```sh
-pip install http.client
-```
-7.  Run the program `main`
+3. Install dependencies 
+   ```sh
+   pip install -r requirements.txt
+   ```
+
+4.  Run the program `main`
 
 ## Configuration before running script
 1. Configure your database  to connect correctly by replacing data on __`def dbconnect`__ appropriately
@@ -129,19 +122,19 @@ Application will read the database, check that the dial peer preferences and set
 
 #### For example for international calls to Kenya with country code +254:
  
- dial-peer voice 12541 voip 
- preference 1   
- destination-pattern 00254T  
- session protocol sipv2   
- session target ipv4:1.1.1.1   
+ _dial-peer voice 12541 voip_ 
+ _preference 1_   
+ _destination-pattern 00254T_  
+ _session protocol sipv2_   
+ _session target ipv4:1.1.1.1_   
  
  
-! 
- dial-peer voice 12542 voip  
- preference 2  
- destination-pattern [08]00T   
- session protocol sipv2  
- session target ipv4:2.2.2.2  
+ 
+ _!dial-peer voice 12542 voip_  
+ _preference 2_ 
+ _destination-pattern [08]00T_   
+ _session protocol sipv2_  
+ _session target ipv4:2.2.2.2_  
  
  
 ##### _Outgoing calls will be sent through the provider specified in the dial peer with the lowest preference for that destination_
@@ -182,8 +175,8 @@ def dbconnect(self, server=None):
 
 
 ## Credits
-1. [Cyrus Muchiri](https://github.com/CyrusFinsysGroup) 
-2. Mwaura Gitonga(https://github.com/mwauragitonga)
+1. [Cyrus Muchiri](https://github.com/Cyrus-Muchiri) 
+2. [Mwaura Gitonga](https://github.com/mwauragitonga)
 3. [Stanley Mandela](https://github.com/StanMandela)
 
 <!-- ROADMAP -->
