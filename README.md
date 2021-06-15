@@ -183,7 +183,7 @@ def dbconnect(self, server=None):
 
 ## Credits
 1. [Cyrus Muchiri](https://github.com/CyrusFinsysGroup) 
-2. Kevlvin Mwaura()
+2. Mwaura Gitonga(https://github.com/mwauragitonga)
 3. [Stanley Mandela](https://github.com/StanMandela)
 
 <!-- ROADMAP -->
