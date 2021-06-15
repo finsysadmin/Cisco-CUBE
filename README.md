@@ -95,7 +95,7 @@ pip install paramiko
 ```
 5. install pydoc
 ```sh
-pip install pydoc
+pip install pyodbc
 ```
 6.install http client library
 ```sh
