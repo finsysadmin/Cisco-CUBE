@@ -12,7 +12,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/othneildrew/Best-README-Template">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="images/logo.png" alt="Logo" width="280" height="180">
   </a>
 
 
@@ -39,10 +39,31 @@ A Python script to automate assignment of preference to voice dial peers based o
 
 * Python 3.9
 
-### Libraries
+
+#### Software versions Used
+
+* Cisco CSR 1000V - csr1000v-universalk9.16.12
+* Cisco Unified Border Element Version 14
+* Microsoft SQL Server Express 2019
+
+### Python Libraries
 * Paramiko
 * http.client
 
+### Database
+
+The following Tables exists.
+
+| Tables                             | Contains |
+|------------------------------------|-------------|
+| `areacode`                         | Service Provider code (SPCode), Destination area code (AREA), Charges per minute for the respective destination code (UNIT_CHG). |
+| `gateway`                          | Service provider code (SCODE). An organization can have more than one service provider and each service provider can have more |   |                                    |than one gateway. |
+|`pref_sip_operators`                |Preference (PREF), Area Code (AREA), Service provider code (SPCODE) and Gateway(GW).
+
+**Stored procedure**
+
+***util_get_sip_rank***
+This is routine is called by the script and pass the phone number calling to return the dial peer preferences  
 
 
 <!-- GETTING STARTED -->
@@ -52,6 +73,7 @@ To get a local copy up and running follow these simple steps.
 
 ### Prerequisites
 
+#### Program setup
 Install the following libraries 
  pip 
   ```sh
@@ -65,29 +87,60 @@ Install the following libraries
    ```sh
    git clone https://github.com/finsysadmin/Cisco-CUBE.git
    ```
-3. Edit Database credentials accordingly to connect to your DB on `func` `dbconnect`
+2. Edit Database credentials accordingly to connect to your DB on `function dbconnect`
 
-4. Install paramiko 
-```sh
-pip install paramiko
-```
-5. install pydoc
-```sh
-pip install pydoc
-```
-6.install http client library
-```py
-pip install http.client
-```
+3. Install dependencies 
+   ```sh
+   pip install -r requirements.txt
+   ```
 
-7.  Run the program `main`
+4.  Run the program `main`
+
+## Configuration before running script
+1. Configure your database  to connect correctly by replacing data on __`def dbconnect`__ appropriately
+
+2. Enter the configurations of your cisco device by providing hostname,port,username and password to connect.
 
 <!-- USAGE EXAMPLES -->
-## Usage
+## Database Operations
+By callling Database stored procedure `util_get_sip_rank ` and passing the __dialing Number__ as parameter, the procedure returns the charges for the respective
+country code and arrange them in ascending order.
 
-Automating dial peer  preferences assignment. Lower rates of calling incured as the dial peer will be configured to use the prefernces with the least cost. 
+__For example__ the result shown below :
+
+|PREF (Preference)|AREA (Area Code )|UNIT_CHG |	QOS_RATE|	SPCODE (Service provider code )|	GW (Gateway)|SIPSTATUS |
+|-----|-----|---------|---------|-------------|----|---------|
+|1 |	254|	0.060000 |	NULL|			02|	0|	NULL|
+|2	|254	|0.060000	|NULL			|02	|1	|NULL|
+|3|	254	|0.060000	|NULL		|	02	|2	|NULL|
+|4	|254	|0.091700	|NULL	|		06	|0	|NULL|
+|5	|254|	0.091700	|NULL|			05	|0	|NULL|
+
+## Call flow
+Application will read the database, check that the dial peer preferences and set them for each destination using the ` def write_config(self)` function.
+
+
+#### For example for international calls to Kenya with country code +254:
+ 
+ _dial-peer voice 12541 voip_ 
+ _preference 1_   
+ _destination-pattern 00254T_  
+ _session protocol sipv2_   
+ _session target ipv4:1.1.1.1_   
+ 
+ 
+ 
+ _!dial-peer voice 12542 voip_  
+ _preference 2_ 
+ _destination-pattern [08]00T_   
+ _session protocol sipv2_  
+ _session target ipv4:2.2.2.2_  
+ 
+ 
+##### _Outgoing calls will be sent through the provider specified in the dial peer with the lowest preference for that destination_
 
 ## Code Samples
+
 ### DB connect function
 
 ```
@@ -119,11 +172,11 @@ def dbconnect(self, server=None):
         # Test for reading command output
         print(str(router_output) + "\n")
  ```
-_For more examples, please refer to the [Documentation](https://example.com)_
+
 
 ## Credits
-1. [Cyrus Muchiri](https://github.com/CyrusFinsysGroup) 
-2. Kevlvin Mwaura()
+1. [Cyrus Muchiri](https://github.com/Cyrus-Muchiri) 
+2. [Mwaura Gitonga](https://github.com/mwauragitonga)
 3. [Stanley Mandela](https://github.com/StanMandela)
 
 <!-- ROADMAP -->
@@ -149,7 +202,7 @@ Contributions are what make the open source community such an amazing place to b
 <!-- LICENSE -->
 ## License
 
-Distributed under the MIT License. See `LICENSE` for more information.
+Distributed under the [MIT License](LICENSE).  for more information.
 
 
 
@@ -176,14 +229,10 @@ Project Link: [https://github.com/finsysadmin/Cisco-CUBE](https://github.com/fin
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [contributors-url]: https://github.com/finsysadmin/Cisco-CUBE/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
+<!-- [forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge -->
 [forks-url]: https://github.com/finsysadmin/Cisco-CUBE/network/members
-[stars-shield]: https://img.shields.io/github/stars/othneildrew/Best-README-Template.svg?style=for-the-badge
-[stars-url]: https://github.com/othneildrew/Best-README-Template/stargazers
-[issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge
-[issues-url]: https://github.com/othneildrew/Best-README-Template/issues
-[license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge
-[license-url]: https://github.com/othneildrew/Best-README-Template/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/othneildrew
+<!-- [issues-shield]: https://img.shields.io/github/issues/othneildrew/Best-README-Template.svg?style=for-the-badge -->
+[issues-url]: https://github.com/othneildrew//issues
+<!-- [license-shield]: https://img.shields.io/github/license/othneildrew/Best-README-Template.svg?style=for-the-badge -->
+<!-- [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555 -->
 [product-screenshot]: images/intellij.png

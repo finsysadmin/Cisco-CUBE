@@ -112,7 +112,7 @@ class DevNet:
 if __name__ == "__main__":
     devnet = DevNet()  # create object
     devnet.dbconnect()  # dbConnect
-    #devnet.get_credentials()  # get Credentials
-    #devnet.get_preferences()  # get Preferences
-    #devnet.connect_to_device()  # Connect to device
-    #devnet.write_config()  # write config
+    devnet.get_credentials()  # get Credentials
+    devnet.get_preferences()  # get Preferences
+    devnet.connect_to_device()  # Connect to device
+    devnet.write_config()  # write config
